@@ -1,0 +1,109 @@
+
+<?php
+if(isset($_POST['submit'])){
+	$name = $_POST['name'];
+	$pass = $_POST['pass'];
+	$conn = mysqli_connect('localhost','root','','turnitin');
+	$insert_query = "INSERT INTO `login`(`username`, `password`) VALUES ('".$name."','".$pass."')";
+	mysqli_query($conn,$insert_query);
+	if(!$conn){
+		die ("Connection Death".mysqli_error());
+		}
+	else{
+		echo "<h1>User ha been added......</h1>";
+		}
+	
+	}
+?>
+
+
+
+
+<?php
+if(isset($_POST['submit'])){
+	$name = $_POST['name'];
+	$pass = $_POST['pass'];
+	$conn = mysqli_connect("localhost","root","","turnitin");
+	$query = "SELECT `password` FROM `login` WHERE `username` = '$name'";
+	$result = mysqli_query($conn,$query);
+	$row = mysqli_fetch_array($result);
+	if($row[0] == $pass){
+		header("Location:welcome.php"); 
+		}
+	else{
+		echo "Wrong Email and Password..............";
+	}
+		}
+?>
+
+
+<?php  
+mysql_connect('localhost','root','');
+mysql_select_db('turnitin');
+   if (isset($_POST['button'])) 
+ {
+ 	 $name=$_POST['username'];
+ 	 $pass=$_POST['Password'];
+	 	
+ $query = "INSERT INTO `login2`(`username`, `Password`) VALUES ( '".$name."','".$pass."')";
+
+ if (mysql_query($query)){
+ 	echo "<h2> Data has been Inserted</h2>";
+ }
+ else{
+ echo "data not be inserted";
+}
+}
+?>
+
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "turnitin";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+if (isset($_POST['submit'])) 
+{
+	$name = $_POST['username'];
+	$pass = $_POST['password'];
+
+$sql = "INSERT INTO `login` (`username`,`password`) VALUES ('".$name."','".$pass."')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "<h3>New record created successfully .</h3>.<br>";
+	echo "<a href='index.php'>Return to Home Page</a>";
+} 
+else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+}
+$conn->close();
+?>
+
+
+
+// <?php
+// if(isset($_POST['submit'])){
+// 	$name = $_POST['name'];
+// 	$pass = $_POST['pass'];
+// 	$conn = mysqli_connect('localhost','root','','turnitin');
+// 	$insert_query = "INSERT INTO `login`(`username`, `password`) VALUES ('".$name."','".$pass."')";
+// 	mysqli_query($conn,$insert_query);
+// 	if(!$conn){
+// 		die ("Connection Death".mysqli_error());
+// 		}
+// 	else{
+// 		echo "<h1>User ha been added......</h1>";
+// 		}
+	
+	}
+?>
+ -->
